@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4WD Car Control</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>4WD Car Control</h1>
+        <div class="video-container">
+            <img id="video-feed" width = "50%" src="{{ url_for('video_feed') }}" alt="Video Feed">
+        </div>
+        <div class="controls">
+<!--            <button id="capture-btn">Capture Image</button>-->
+            <button id="stop-btn">Stop</button>
+            <button id="left-btn">Left</button>
+            <button id="right-btn">Right</button>
+            <button id="forward-btn">Forward</button>
+            <button id="reverse-btn">Reverse</button>
+        </div>
+    </div>
+      <script>
+        $(document).ready(function(){
+<!--            $('#capture-btn').click(function(){-->
+<!--                // Implement capture image functionality-->
+<!--            });-->
+
+            $('#stop-btn').click(function(){
+                $.ajax({
+                    url: '/place_message_in_queue',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ message: 'Stop' }),
+                    success: function(response) {
+                        console.log(response.message);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error placing message in Azure Queue:', error);
+                    }
+                });
+            });
+
+            $('#left-btn').click(function(){
+                $.ajax({
+                    url: '/place_message_in_queue',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ message: 'Left' }),
+                    success: function(response) {
+                        console.log(response.message);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error placing message in Azure Queue:', error);
+                    }
+                });
+            });
+
+            $('#right-btn').click(function(){
+                $.ajax({
+                    url: '/place_message_in_queue',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ message: 'Right' }),
+                    success: function(response) {
+                        console.log(response.message);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error placing message in Azure Queue:', error);
+                    }
+                });
+            });
+
+            $('#forward-btn').click(function(){
+                $.ajax({
+                    url: '/place_message_in_queue',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ message: 'Forward' }),
+                    success: function(response) {
+                        console.log(response.message);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error placing message in Azure Queue:', error);
+                    }
+                });
+            });
+
+            $('#reverse-btn').click(function(){
+                $.ajax({
+                    url: '/place_message_in_queue',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ message: 'Back' }),
+                    success: function(response) {
+                        console.log(response.message);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error placing message in Azure Queue:', error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
